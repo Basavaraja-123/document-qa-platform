@@ -32,26 +32,26 @@ A streamlined web application for document management and question answering usi
 
 1. Clone the repository:
 
-\`\`\`bash
+```sh
 git clone https://github.com/Basavaraja-123/document-qa-platform.git
 cd document-qa-platform
-\`\`\`
+```
 
 2. Install dependencies:
 
-\`\`\`bash
+```sh
 npm install
 # or
 yarn install
-\`\`\`
+```
 
 3. Start the development server:
 
-\`\`\`bash
+```sh
 npm run dev
 # or
 yarn dev
-\`\`\`
+```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
@@ -83,7 +83,7 @@ Or you can create a new account using the signup page.
 
 ## Project Structure
 
-\`\`\`
+```sh
 document-qa-platform/
 ├── app/                    # Next.js App Router pages
 │   ├── dashboard/          # Dashboard pages
@@ -103,7 +103,7 @@ document-qa-platform/
 │   └── utils.ts            # Utility functions
 ├── public/                 # Static assets
 └── README.md               # Project documentation
-\`\`\`
+```
 
 ## Features in Detail
 
