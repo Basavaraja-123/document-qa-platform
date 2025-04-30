@@ -84,7 +84,7 @@ describe('SignUpPage', () => {
         title: 'Account created!',
         description: 'You have successfully signed up.',
       });
-      expect(mockPush).toHaveBeenCalledWith('/dashboard');
+      expect(mockPush).toHaveBeenCalledWith('/login');
     });
   });
 
