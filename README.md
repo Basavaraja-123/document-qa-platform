@@ -138,7 +138,3 @@ Administrators can:
 - [ ] Add document version control
 - [ ] Implement collaborative features
 - [ ] Add analytics dashboard
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
