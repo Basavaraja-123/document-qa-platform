@@ -59,12 +59,12 @@ yarn dev
 
 ### Authentication
 
-For demo purposes, you can use the following credentials:
+You can now create your own account using the Sign Up page.
 
-- **Email**: basavaraj1@gmail.com
-- **Password**: password
+Your user details (name, email, password, and role) will be saved in your browser's localStorage and used for authentication.
 
-Or you can create a new account using the signup page.
+> **Note**: This is a mock authentication setup for demo purposes only. All data is stored locally in your browser and not persisted across different devices or sessions.
+
 
 ### Document Upload
 
