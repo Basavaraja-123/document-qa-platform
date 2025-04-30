@@ -29,6 +29,9 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: 'Password must be at least 8 characters.',
   }),
+  role: z.enum(['admin', 'user', 'viewer'], {
+    errorMap: () => ({ message: 'Please select a valid role.' }),
+  }),
 });
 
 export default function SignUpPage() {
@@ -43,6 +46,7 @@ export default function SignUpPage() {
       name: '',
       email: '',
       password: '',
+      role: 'user',
     },
   });
 
@@ -54,7 +58,13 @@ export default function SignUpPage() {
         title: 'Account created!',
         description: 'You have successfully signed up.',
       });
-      router.push('/dashboard');
+      router.push('/login');
+      const userIn = localStorage.getItem('user');
+      if (userIn) {
+        const user = JSON.parse(userIn);
+        user.role = values.role;
+        localStorage.setItem('user', JSON.stringify(user));
+      }
     } catch (error) {
       toast({
         title: 'Error',
@@ -99,11 +109,7 @@ export default function SignUpPage() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="Enter Email"
-                      {...field}
-                    />
+                    <Input type="email" placeholder="Enter Email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,7 +122,31 @@ export default function SignUpPage() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="Enter password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Role</FormLabel>
+                  <FormControl>
+                    <select
+                      {...field}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm"
+                    >
+                      <option value="admin">Admin</option>
+                      <option value="user">User</option>
+                      <option value="viewer">Viewer</option>
+                    </select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

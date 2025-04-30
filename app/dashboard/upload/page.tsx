@@ -61,7 +61,6 @@ export default function UploadPage() {
 
     setIsUploading(true)
     try {
-      // In a real app, you would upload the files to your backend
       await mockUploadDocument(
         files,
         description,
@@ -73,7 +72,6 @@ export default function UploadPage() {
         description: `${files.length} file(s) uploaded successfully.`,
       })
 
-      // Reset form
       setFiles([])
       setDescription("")
       setTags("")

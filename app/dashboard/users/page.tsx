@@ -56,7 +56,6 @@ export default function UsersPage() {
     role: 'user',
   });
 
-  // Check if current user is admin
   if (currentUser?.role !== 'admin') {
     return (
       <div className="flex h-full flex-col items-center justify-center p-8">

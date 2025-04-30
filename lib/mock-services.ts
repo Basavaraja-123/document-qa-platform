@@ -1,5 +1,3 @@
-// This file contains mock services that simulate backend functionality
-// In a real application, these would be API calls to your backend
 
 interface User {
   id: string;
@@ -8,10 +6,8 @@ interface User {
   role: 'admin' | 'user' | 'viewer';
 }
 
-// Simulated delay to mimic API calls
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Mock user data for authentication
 const mockUserData = {
   id: '1',
   name: 'basavaraj1',
@@ -19,17 +15,20 @@ const mockUserData = {
   role: 'admin' as const,
 };
 
-// Mock authentication services
 export const mockLogin = async (
   email: string,
   password: string
 ): Promise<User> => {
-  await delay(1000); // Simulate API delay
+  await delay(1000);
 
-  // In a real app, this would validate credentials against a backend
-  if (email === 'basavaraj1@gmail.com' && password === 'password') {
-    localStorage.setItem('user', JSON.stringify(mockUserData));
-    return mockUserData;
+  const storedUser = localStorage.getItem('user');
+  if (!storedUser) {
+    throw new Error('No user found');
+  }
+
+  const userInfo = JSON.parse(storedUser);
+  if (email === userInfo.email && password === userInfo.password) {
+    return userInfo;
   }
 
   throw new Error('Invalid credentials');
@@ -40,14 +39,14 @@ export const mockSignUp = async (
   password: string,
   name: string
 ): Promise<User> => {
-  await delay(1500); // Simulate API delay
+  await delay(1500);
 
-  // In a real app, this would create a new user in the backend
   const newUser = {
     id: Date.now().toString(),
     name,
     email,
     role: 'user' as const,
+    password,
   };
 
   localStorage.setItem('user', JSON.stringify(newUser));
@@ -55,12 +54,12 @@ export const mockSignUp = async (
 };
 
 export const mockLogout = async (): Promise<void> => {
-  await delay(500); // Simulate API delay
+  await delay(500);
   localStorage.removeItem('user');
 };
 
 export const mockGetCurrentUser = async (): Promise<User | null> => {
-  await delay(800); // Simulate API delay
+  await delay(800);
 
   const userJson = localStorage.getItem('user');
   if (!userJson) return null;
@@ -68,21 +67,18 @@ export const mockGetCurrentUser = async (): Promise<User | null> => {
   return JSON.parse(userJson);
 };
 
-// Mock document services
 export const mockUploadDocument = async (
   files: File[],
   description: string,
   tags: string[]
 ): Promise<void> => {
-  await delay(2000); // Simulate upload delay
+  await delay(2000);
 
-  // In a real app, this would upload files to a storage service
   console.log('Uploaded files:', files);
   console.log('Description:', description);
   console.log('Tags:', tags);
 };
 
-// Mock Q&A services
 interface QuestionResponse {
   answer: string;
   sources: {
@@ -94,12 +90,9 @@ interface QuestionResponse {
 export const mockAskQuestion = async (
   question: string
 ): Promise<QuestionResponse> => {
-  await delay(2000); // Simulate processing delay
+  await delay(2000); 
 
-  // In a real app, this would send the question to a RAG system
-  // and return the answer with sources
 
-  // Simple mock responses based on keywords in the question
   if (
     question.toLowerCase().includes('financial') ||
     question.toLowerCase().includes('revenue')

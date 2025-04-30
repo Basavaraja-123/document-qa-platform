@@ -26,7 +26,6 @@ export const Dialog = ({ open, onClose, children }: DialogProps) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onClose]);
 
-  // Close on pressing Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -46,7 +45,6 @@ export const Dialog = ({ open, onClose, children }: DialogProps) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
     >
       <div className="relative w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute right-4 top-4 rounded-sm p-1 text-gray-500 transition hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary"
@@ -54,7 +52,6 @@ export const Dialog = ({ open, onClose, children }: DialogProps) => {
           <X className="h-5 w-5" />
         </button>
 
-        {/* Content */}
         {children}
       </div>
     </div>
